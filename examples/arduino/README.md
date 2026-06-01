@@ -1,5 +1,14 @@
 # ESP32-P4 Arduino Supported
 
+These Arduino examples are mainly display-oriented. Most of them require:
+
+- A compatible ESP32-P4 Arduino board package.
+- PSRAM enabled in the Arduino board settings.
+- A supported DSI display configuration selected through `CURRENT_SCREEN`.
+
+For the full repository learning path, see [../README.md](../README.md) and
+[../../docs/GETTING_STARTED.md](../../docs/GETTING_STARTED.md).
+
 ## arduino-esp32 core 
 
 ### Latest Stable Release:
@@ -33,6 +42,16 @@ You can use the [Arduino-ESP32 Online Documentation](https://docs.espressif.com/
 ### [Arduino_GFX v1.6.0](https://github.com/moononournation/Arduino_GFX)
 
 Arduino GFX provides the encapsulated ESP32-P4 MIPI DSI function
+
+## Example Sketches
+
+| Example | Difficulty | Hardware |
+| --- | --- | --- |
+| [HelloWorld](examples/HelloWorld/) | Beginner | DSI display |
+| [AsciiTable](examples/AsciiTable/) | Beginner | DSI display |
+| [Drawing_board](examples/Drawing_board/) | Intermediate | DSI touch display |
+| [GFX_ESPWiFiAnalyzer](examples/GFX_ESPWiFiAnalyzer/) | Intermediate | DSI display and Wi-Fi support |
+| [LVGLV9_Arduino](examples/LVGLV9_Arduino/) | Advanced | DSI touch display |
 
 ## Special points to pay attention
 
