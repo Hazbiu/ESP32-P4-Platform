@@ -49,6 +49,7 @@ where new examples and documentation should live.
 | [Examples Guide](docs/EXAMPLES_GUIDE.md) | All users | Choose examples by difficulty and peripheral |
 | [ESP32-P4 Revision Config](docs/ESP32P4_REVISION_CONFIG.md) | All users | Choose v3.x production or pre-v3 sample build profiles |
 | [Troubleshooting](docs/TROUBLESHOOTING.md) | All users | Build, flash, runtime, and peripheral checks |
+| [Continuous Integration](docs/CI.md) | Contributors | GitHub Actions coverage for ESP-IDF examples |
 | [Example Roadmap](docs/EXAMPLE_ROADMAP.md) | Contributors | Suggested examples that would improve coverage |
 | [Project Structure](docs/PROJECT_STRUCTURE.md) | Contributors | Repository layout and example expectations |
 
