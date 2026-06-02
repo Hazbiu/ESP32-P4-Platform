@@ -1,13 +1,17 @@
 | Supported Targets | ESP32-P4 | ESP32-S3 | ESP32-C3 | ESP32-C6 | ESP32-C5 |
 |-------------------|----------|----------|----------|----------|----------|
 
+[中文版本](./README_CN.md)
+
 # Simple Video Server Example
 
 *(See the [README.md](../README.md) file in the upper level [examples](../) directory for more information about examples.)*
 
 ## Overview
 
-This example demonstrates how to create multiple HTTP servers on a local network using different ports. These servers can be accessed through a web browser to provide various video streaming and image capture functionalities.
+This example demonstrates how to create multiple HTTP servers on a local network using different ports. These servers can be accessed through a web browser to provide video streaming, still image capture, raw frame download, and camera setting updates.
+
+The firmware initializes the selected `esp_video` camera devices, connects to the configured network, starts the main web UI on port 80, and starts one MJPEG stream server per detected camera starting at port 81. The web UI assets under `frontend/gzipped` are embedded into the firmware image.
 
 ## API Endpoints
 
@@ -37,11 +41,13 @@ You can also access all URLs using the device's IP address directly.
 
 ### Hardware Configuration
 
-Before using this example, please refer to the [video initialization configuration guide](../common_components/example_video_common/README.md) for detailed information about:
+Before using this example, please refer to the [video initialization configuration guide](components/example_video_common/README.md) for detailed information about:
 - Board-level configuration
 - Camera sensor interface setup
 - GPIO pin assignments
 - Clock frequency settings
+
+The ESP32-P4 defaults select the ESP32-P4-Function-EV-Board V1.5 profile, enable MIPI-CSI, and select the OV5647 MIPI RAW8 `800 x 1280` sensor format. Change these options when using another board revision or camera module.
 
 ### Project Configuration
 
@@ -59,9 +65,11 @@ Navigate to **Example Connection Configuration**:
 - **Wi-Fi SSID and Password**: Required for ESP32 to connect to your network
 - **SoftAP Settings**: Configure if you want the ESP32 to work as an Access Point
 
+The base `sdkconfig.defaults` selects Wi-Fi connection mode. If your ESP32-P4 setup relies on remote Wi-Fi, configure `esp_wifi_remote` and the slave target before expecting the web server to appear on the network.
+
 **Ethernet Interface Configuration:**
 - **PHY Model**: Select your PHY model (e.g., IP101) in `Ethernet PHY` option
-- **PHY Address**: Set based on your board schematic in `PHY Address` option  
+- **PHY Address**: Set based on your board schematic in `PHY Address` option
 - **Clock Configuration**: Configure EMAC Clock mode and SMI GPIO pins
 
 **Wi-Fi Remote Configuration** (for devices without native WiFi support):
@@ -90,7 +98,7 @@ Navigate to **Espressif Camera Sensors Configurations**:
    Example Configuration  --->
        (2) Camera video buffer number
    ```
-   
+
    > **Recommendation**: More buffers provide better performance and reduce frame drops but consume more memory. For high-resolution sensors (e.g., 1080P), use 2 buffers.
 
 3. **Set JPEG compression quality:**
@@ -98,7 +106,7 @@ Navigate to **Espressif Camera Sensors Configurations**:
    Example Configuration  --->
        (80) JPEG compression quality (%)
    ```
-   
+
    > **Note**: Not all camera sensors support this setting. If unsupported, the example will automatically select the nearest supported value.
 
 4. **HTTP and mDNS configuration:**
@@ -108,13 +116,13 @@ Navigate to **Espressif Camera Sensors Configurations**:
        (web-cam) mDNS instance
        (esp-web) mDNS host name
    ```
-   
+
    > **Recommendation**: Keep these default settings unless you have specific requirements.
 
 5. **Camera sensor interface selection:**
-   
+
    The example will initialize all enabled camera sensors and stream their output to clients:
-   
+
    ```
    Example Video Initialization Configuration  --->
        Select and Set Camera Sensor Interface  --->
@@ -123,9 +131,9 @@ Navigate to **Espressif Camera Sensors Configurations**:
    ```
 
 6. **Shared I2C bus configuration:**
-   
+
    If your camera sensors share the same I2C GPIO pins (such as MIPI-CSI and DVP sensors on the ESP32-P4-Function-EV-Board V1.5):
-   
+
    ```
    Example Video Initialization Configuration  --->
        [*] Use Pre-initialized SCCB(I2C) Bus for All Camera Sensors And Motors
@@ -135,9 +143,9 @@ Navigate to **Espressif Camera Sensors Configurations**:
    ```
 
 7. **Select target camera sensors:**
-   
+
    Choose sensors based on your development board:
-   
+
    ```
    Component config  --->
        Espressif Camera Sensors Configurations  --->
@@ -149,9 +157,9 @@ Navigate to **Espressif Camera Sensors Configurations**:
    ```
 
 8. **Optimize DVP interface performance:**
-   
+
    For better frame rates with DVP interface camera sensors:
-   
+
    ```
    Component config  --->
        Espressif Camera Sensors Configurations  --->
@@ -164,13 +172,20 @@ Navigate to **Espressif Camera Sensors Configurations**:
                            ( ) RGB565 240x240 25fps, DVP 8-bit, 20M input
    ```
 
+9. **MIPI-CSI crop support:**
+
+   If MIPI-CSI crop is enabled, configure the crop origin and size in
+   **Example Configuration**. Keep the crop origin even and make sure the crop
+   width and height do not exceed the selected sensor output frame.
+
 ## Building and Running
 
 1. **Build and flash the project:**
    ```bash
+   idf.py set-target esp32p4
    idf.py -p PORT flash monitor
    ```
-   
+
    *(Press `Ctrl-]` to exit the serial monitor)*
 
 2. **For complete setup instructions**, see the [ESP-IDF Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html).

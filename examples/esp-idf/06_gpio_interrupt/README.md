@@ -1,5 +1,7 @@
 # GPIO Interrupt
 
+[中文版本](./README_CN.md)
+
 GPIO interrupt and debounce example.
 
 This demo is the next step after [05_gpio_io](../05_gpio_io/). It shows how to
@@ -23,6 +25,15 @@ Beginner to intermediate.
 
 Change the input GPIO and debounce time in `idf.py menuconfig`.
 
+## Wiring Notes
+
+The default input pull-up is enabled. For a simple test, connect a button or
+jumper between GPIO3 and GND. The example triggers on both rising and falling
+edges, so the log should update when the input is pressed and released.
+
+Only drive the input with 3.3 V logic. Do not connect the GPIO directly to a
+5 V signal.
+
 ## Build and Flash
 
 ```bash
@@ -38,8 +49,8 @@ idf.py -p PORT flash monitor
 When the input changes level, the monitor prints an event:
 
 ```text
-gpio=3 level=0 time=1234567 us
-gpio=3 level=1 time=1345678 us
+gpio=3 level=0 time=1234 ms
+gpio=3 level=1 time=1456 ms
 ```
 
 ## What to Reuse
@@ -47,4 +58,3 @@ gpio=3 level=1 time=1345678 us
 - `gpio_install_isr_service()` and `gpio_isr_handler_add()`.
 - `xQueueSendFromISR()` for passing ISR events to a task.
 - A simple software debounce pattern.
-

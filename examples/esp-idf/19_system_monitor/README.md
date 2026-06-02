@@ -1,5 +1,7 @@
 # System Monitor
 
+[中文版本](./README_CN.md)
+
 Serial diagnostics and runtime monitor for advanced users.
 
 This demo is useful as a product bring-up or field-debug starting point. It

@@ -1,5 +1,7 @@
 # Ethernet Basic
 
+[中文版本](./README_CN.md)
+
 Bring up Ethernet, wait for link, and obtain an IP address.
 
 ## Difficulty
@@ -26,10 +28,11 @@ idf.py -p PORT flash monitor
 
 Check **Example Configuration** and the Ethernet PHY settings:
 
-- Internal or SPI Ethernet mode.
-- PHY model.
-- PHY address.
-- MDC/MDIO GPIOs.
+- `Stop and deinit Ethernet after elapsing number of secs`: leave at `-1` for a
+  normal bring-up run, or set a value to exercise driver teardown.
+- Internal EMAC or SPI Ethernet mode.
+- PHY model and PHY address.
+- MDC/MDIO GPIOs for internal EMAC.
 - Reset GPIO.
 - Clock mode.
 
@@ -37,7 +40,18 @@ The right values depend on the board schematic.
 
 ## Expected Output
 
-The log should show Ethernet driver initialization, link up, and an IP address.
+The log should show Ethernet driver initialization, link up, the Ethernet MAC
+address, and the DHCP result:
+
+```text
+Ethernet Started
+Ethernet Link Up
+Ethernet Got IP Address
+ETHIP:...
+```
+
+Use this example before [15_eth2ap](../15_eth2ap/) because it validates the
+Ethernet side without adding Wi-Fi AP forwarding.
 
 ## Troubleshooting
 

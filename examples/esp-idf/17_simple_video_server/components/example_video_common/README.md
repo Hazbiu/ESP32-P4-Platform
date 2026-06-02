@@ -1,5 +1,7 @@
 # Example Video Common Component
 
+[中文版本](./README_CN.md)
+
 This component provides board-level initialization for esp_video, including MIPI-CSI sensor I2C port, DVP sensor I2C port, DVP interface configuration and SPI interface configuration. It is primarily designed for esp_video examples to simplify board-level configuration and initialization processes.
 
 ## Supported Boards and GPIO Pins

@@ -1,5 +1,7 @@
 # SDMMC
 
+[中文版本](./README_CN.md)
+
 Mount and test an SD card over the SDMMC interface.
 
 ## Difficulty
@@ -32,10 +34,26 @@ In **SD/MMC Example Configuration**, check:
 
 Do not enable format options unless you are willing to erase the card.
 
+Default ESP32-P4 SDMMC pins:
+
+| Signal | Default GPIO |
+| --- | --- |
+| CLK | GPIO43 |
+| CMD | GPIO44 |
+| D0 | GPIO39 |
+| D1 | GPIO40 |
+| D2 | GPIO41 |
+| D3 | GPIO42 |
+
+The default bus width is 4-line mode. If you are using hand wiring or a simple
+module, switch to 1-line mode first and only enable 4-line mode after the card
+mounts reliably.
+
 ## Expected Output
 
-The example should mount the card, print card information, write a file, read
-it back, and unmount the card.
+The example mounts the card, prints card information, writes
+`/sdcard/hello.txt`, renames it to `/sdcard/foo.txt`, reads it back, writes
+`/sdcard/nihao.txt`, reads it back, and unmounts the card.
 
 ## Troubleshooting
 
@@ -43,3 +61,7 @@ it back, and unmount the card.
 - Check card detect and power wiring if your board uses them.
 - Use a known-good SD card formatted as FAT.
 - Keep SDMMC wires short when using an external module.
+- The example enables internal pull-ups for convenience, but SD cards still
+  need proper external pull-ups on the bus in real hardware.
+- On ESP32-P4 boards using an internal LDO for SD power, verify the configured
+  LDO ID against the schematic before enabling that option.

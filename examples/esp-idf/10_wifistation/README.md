@@ -1,5 +1,7 @@
 # Wi-Fi Station
 
+[中文版本](./README_CN.md)
+
 Connect an ESP32-P4 setup to an existing Wi-Fi access point.
 
 ## Difficulty
@@ -12,7 +14,10 @@ Intermediate.
 - A 2.4 GHz Wi-Fi access point.
 
 Some ESP32-P4 boards require an external or companion Wi-Fi path. Check your
-board documentation before using this example.
+board documentation before using this example. In this project, the main
+component manifest pulls in `esp_wifi_remote` and `esp_hosted`, so ESP32-P4
+setups without native Wi-Fi must have the companion Wi-Fi transport configured
+and connected before the station can associate.
 
 ## Build and Flash
 
@@ -35,6 +40,10 @@ In `menuconfig`, open **Example Connection Configuration** or
 - Wi-Fi SSID.
 - Wi-Fi password.
 - Maximum retry count, if needed.
+- Accepted authentication mode. The default threshold is WPA2-PSK.
+
+The source logs the configured SSID and password after a successful connection.
+Avoid using production credentials in shared serial logs.
 
 ## Expected Output
 
@@ -47,3 +56,6 @@ IP address after DHCP succeeds.
 - Confirm the SSID and password.
 - Use a 2.4 GHz network.
 - Move the board closer to the access point if connection retries continue.
+- If the build fails in an editor extension, retry from an ESP-IDF command-line
+  shell so managed components and target-specific tools are initialized
+  explicitly.
