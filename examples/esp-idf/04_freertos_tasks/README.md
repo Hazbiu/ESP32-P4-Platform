@@ -1,5 +1,7 @@
 # FreeRTOS Tasks
 
+[中文版本](./README_CN.md)
+
 Beginner-friendly FreeRTOS example with two tasks and one queue.
 
 This is a good next step after `00_board_check` and `02_HelloWorld` because it

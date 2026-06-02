@@ -1,5 +1,7 @@
 # How To Create Project
 
+[中文版本](./README_CN.md)
+
 This is the smallest ESP-IDF project layout in the repository. It is useful
 when you want to understand which files are required before adding real
 application logic.
@@ -32,4 +34,3 @@ reference. For a more useful first run, use
 - `CMakeLists.txt`: project entry point.
 - `main/CMakeLists.txt`: registers the source file as an ESP-IDF component.
 - `main/main.c`: application entry point.
-

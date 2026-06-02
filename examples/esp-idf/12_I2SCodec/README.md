@@ -1,5 +1,7 @@
 # I2S Codec
 
+[中文版本](./README_CN.md)
+
 Audio codec example using I2S. It can run in music playback mode or echo mode,
 depending on configuration.
 
@@ -32,10 +34,29 @@ In **Example Configuration**, check:
 - Voice volume.
 - BSP support option.
 
+Default non-BSP ESP32-P4 wiring used by `main/example_config.h`:
+
+| Signal | Default GPIO |
+| --- | --- |
+| I2C SDA | GPIO7 |
+| I2C SCL | GPIO8 |
+| I2S MCLK | GPIO13 |
+| I2S BCLK | GPIO12 |
+| I2S WS | GPIO10 |
+| I2S DOUT | GPIO9 |
+| I2S DIN | GPIO11 |
+| Power amplifier enable | GPIO53 |
+
+Enable the BSP option only when the selected BSP matches your board audio
+schematic. Echo mode is available only in the non-BSP path in the current
+Kconfig.
+
 ## Expected Behavior
 
 - Music mode plays the bundled `canon.pcm` sample.
 - Echo mode routes microphone input through the codec path.
+- The log prints `i2s driver init success` and `es8311 codec init success`
+  before audio playback or echo starts.
 
 ## Troubleshooting
 
@@ -43,3 +64,5 @@ In **Example Configuration**, check:
 - Start with a moderate volume.
 - If there is no sound, check whether the selected board path matches your
   hardware.
+- If codec initialization fails, run [08_i2c_tools](../08_i2c_tools/) on the
+  same SDA/SCL pins to confirm the ES8311 responds on the control bus.

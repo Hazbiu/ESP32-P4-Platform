@@ -1,11 +1,4 @@
-This routine cannot be compiled with VS code plugins, otherwise it will compile with an error
+See README.md for the maintained Wi-Fi Station instructions.
 
-This routine cannot be compiled with VS code plugins, otherwise it will compile with an error
-
-This routine cannot be compiled with VS code plugins, otherwise it will compile with an error
-
-此例程不能使用VS code插件进行编译，否则编译报错
-
-此例程不能使用VS code插件进行编译，否则编译报错
-
-此例程不能使用VS code插件进行编译，否则编译报错
+If an editor extension fails to build this managed-component example, retry from
+an ESP-IDF command-line shell before debugging the editor setup.

@@ -1,5 +1,7 @@
 # ESP Simple Video Server - WebUI
 
+[中文版本](./README_CN.md)
+
 This directory contains the source code for the ESP Simple Video Server WebUI.
 
 ## Build

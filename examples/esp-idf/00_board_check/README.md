@@ -1,5 +1,7 @@
 # Board Check
 
+[中文版本](./README_CN.md)
+
 This is the recommended first ESP-IDF example for this repository.
 
 It does not require any external module, display, camera, SD card, network, or

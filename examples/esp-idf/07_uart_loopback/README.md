@@ -1,5 +1,7 @@
 # UART Loopback
 
+[中文版本](./README_CN.md)
+
 Small UART example that sends text from TX and reads it back on RX.
 
 ## Difficulty
@@ -19,6 +21,15 @@ Beginner to intermediate.
 | RX | GPIO44 |
 
 Change these in `idf.py menuconfig` if the pins conflict with your board.
+
+## Configuration Notes
+
+The default UART port is UART1 at 115200 baud. This is separate from the USB
+serial monitor used for flashing and logs, so the loopback jumper must be
+placed between the configured TX and RX GPIOs.
+
+Use 3.3 V UART wiring only. For board bring-up, keep the jumper short and avoid
+GPIOs already used by the board's display, SD card, camera, or debug port.
 
 ## Build and Flash
 
@@ -46,3 +57,4 @@ Without the jumper, the example prints a warning.
 - `uart_param_config()`
 - `uart_set_pin()`
 - `uart_write_bytes()` and `uart_read_bytes()`
+- A simple timeout-based check for wiring or pin-selection mistakes.

@@ -1,5 +1,7 @@
 # GPIO IO
 
+[中文版本](./README_CN.md)
+
 Small GPIO input/output example.
 
 It toggles one output pin once per second and reads one input pin. If you

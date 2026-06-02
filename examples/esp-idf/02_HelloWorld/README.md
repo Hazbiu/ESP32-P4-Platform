@@ -1,5 +1,7 @@
 # Hello World
 
+[中文版本](./README_CN.md)
+
 Classic ESP-IDF hello world example for ESP32-P4.
 
 This example prints chip information, flash size, and heap information, then
@@ -38,4 +40,3 @@ minimum heap size, and a restart countdown.
 
 - The example intentionally restarts after the countdown.
 - Use this as a basic ESP-IDF smoke test after `00_board_check`.
-

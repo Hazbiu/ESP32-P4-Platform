@@ -1,5 +1,7 @@
 # NVS Counter
 
+[中文版本](./README_CN.md)
+
 Beginner-friendly example that stores a boot counter in NVS flash.
 
 NVS is the usual place to save small settings such as calibration values,
