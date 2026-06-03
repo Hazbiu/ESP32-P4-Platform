@@ -1,5 +1,7 @@
 # Project Structure
 
+[中文版本](./PROJECT_STRUCTURE_CN.md)
+
 This repository is organized as a collection of examples rather than as one
 monolithic firmware application.
 

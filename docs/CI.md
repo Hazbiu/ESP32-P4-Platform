@@ -1,5 +1,7 @@
 # Continuous Integration
 
+[中文版本](./CI_CN.md)
+
 This repository uses GitHub Actions to build ESP-IDF examples when they are
 added or changed.
 

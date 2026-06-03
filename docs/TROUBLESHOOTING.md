@@ -1,5 +1,7 @@
 # Troubleshooting
 
+[中文版本](./TROUBLESHOOTING_CN.md)
+
 Start with `examples/esp-idf/00_board_check`. It has no external hardware
 requirements and helps separate toolchain problems from peripheral problems.
 
