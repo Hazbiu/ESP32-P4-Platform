@@ -1,5 +1,7 @@
 # Examples Guide
 
+[中文版本](./EXAMPLES_GUIDE_CN.md)
+
 The repository serves two kinds of users:
 
 - Beginners who need a clear first success.

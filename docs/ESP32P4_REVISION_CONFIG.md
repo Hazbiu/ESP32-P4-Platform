@@ -1,5 +1,7 @@
 # ESP32-P4 Revision Configuration
 
+[中文版本](./ESP32P4_REVISION_CONFIG_CN.md)
+
 ESP32-P4 chips earlier than rev v3.0 and chips at rev v3.0 or later are not
 binary compatible in ESP-IDF. A firmware image must be built for one side of
 that boundary.
