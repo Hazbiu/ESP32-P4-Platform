@@ -54,7 +54,7 @@ void app_main(void)
         ESP_LOGW(TAG, "Failed to read flash size");
     }
 
-    if (esp_psram_is_initialized()) {
+    if (false) {
         printf("PSRAM: initialized\n");
         printf("PSRAM free: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
     } else {
