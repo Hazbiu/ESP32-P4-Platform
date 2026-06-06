@@ -143,12 +143,9 @@ static void camera_video_frame_operation(
 
     uint32_t in_offset_x = 0;
     uint32_t in_offset_y = 0;
-    calc_ppa_input_offset(camera_buf_hes, camera_buf_ves,
-                          display_width, display_height,
-                          &in_offset_x, &in_offset_y);
 
-    uint32_t in_block_w = (camera_buf_hes > display_width) ? display_width : camera_buf_hes;
-    uint32_t in_block_h = (camera_buf_ves > display_height) ? display_height : camera_buf_ves;
+    uint32_t in_block_w = camera_buf_hes;
+    uint32_t in_block_h = camera_buf_ves;
 
     ppa_srm_oper_config_t srm_config = {
         .in.buffer = camera_buf,
@@ -171,11 +168,11 @@ static void camera_video_frame_operation(
         .out.srm_cm = APP_VIDEO_FMT == APP_VIDEO_FMT_RGB565 ? PPA_SRM_COLOR_MODE_RGB565 : PPA_SRM_COLOR_MODE_RGB888,
 
         .rotation_angle = PPA_SRM_ROTATION_ANGLE_0,
-        .scale_x = 1,
-        .scale_y = 1,
+        .scale_x = (float)display_width / (float)camera_buf_hes,
+        .scale_y = (float)display_height / (float)camera_buf_ves,
         .mirror_x = 0,
         .mirror_y = 0,
-        .rgb_swap = 0,
+        .rgb_swap = 1,
         .byte_swap = 0,
         .mode = PPA_TRANS_MODE_BLOCKING,
     };
@@ -187,8 +184,8 @@ static void camera_video_frame_operation(
         return;
     }
 
-    uint32_t draw_w = (camera_buf_hes > display_width) ? display_width : camera_buf_hes;
-    uint32_t draw_h = (camera_buf_ves > display_height) ? display_height : camera_buf_ves;
+    uint32_t draw_w = display_width;
+    uint32_t draw_h = display_height;
 
     if (dummy_draw_enabled && !dummy_mode_delay_flag)
     {
