@@ -172,8 +172,9 @@ static void camera_video_frame_operation(
         .scale_y = (float)display_height / (float)camera_buf_ves,
         .mirror_x = 0,
         .mirror_y = 0,
-        .rgb_swap = 1,
-        .byte_swap = 0,
+        // Test A
+        .rgb_swap = 0,
+        .byte_swap = 1,
         .mode = PPA_TRANS_MODE_BLOCKING,
     };
 

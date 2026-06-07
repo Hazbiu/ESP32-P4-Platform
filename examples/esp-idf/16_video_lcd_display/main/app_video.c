@@ -38,6 +38,7 @@ typedef struct {
     uint8_t video_task_core_id;
     bool video_task_delete;
     void *video_task_user_data;
+    int video_fd;
 } app_video_t;
 
 static app_video_t app_camera_video;
@@ -346,11 +347,19 @@ esp_err_t app_video_stream_task_start(int video_fd, int core_id, void *user_data
 {
     app_camera_video.video_task_core_id = core_id;
     app_camera_video.video_task_user_data = user_data;
+    app_camera_video.video_fd = video_fd;
 
     video_stream_start(video_fd);
 
-    BaseType_t result = xTaskCreatePinnedToCore(video_stream_task, "video stream task", VIDEO_TASK_STACK_SIZE, &video_fd, VIDEO_TASK_PRIORITY, &app_camera_video.video_stream_task_handle, core_id);
-
+    BaseType_t result = xTaskCreatePinnedToCore(
+        video_stream_task,
+        "video stream task",
+        VIDEO_TASK_STACK_SIZE,
+        &app_camera_video.video_fd,
+        VIDEO_TASK_PRIORITY,
+        &app_camera_video.video_stream_task_handle,
+        core_id
+    );
     if (result != pdPASS) {
         ESP_LOGE(TAG, "failed to create video stream task");
         goto errout;
