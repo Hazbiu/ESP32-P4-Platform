@@ -76,7 +76,7 @@ static const esp_cam_sensor_isp_info_t ov5647_isp_info[] = {
             .pclk = 88333333,
             .vts = 1796,
             .hts = 1093,
-            .bayer_type = ESP_CAM_SENSOR_BAYER_GBRG,
+            .bayer_type = ESP_CAM_SENSOR_BAYER_BGGR,
         }
     },
 };
